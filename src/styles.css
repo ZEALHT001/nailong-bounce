@@ -43,11 +43,20 @@ body,
   height: 100%;
   margin: 0;
   overflow: hidden;
+  /*
+   * Holding a touch control must not start a text selection. Without this, a long press on the
+   * charge button raises the system select/copy callout and interrupts the jump.
+   */
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
 
 body {
   min-width: 320px;
   overscroll-behavior: none;
+  /* Kill the double-tap zoom delay on the touch controls. */
+  touch-action: manipulation;
 }
 
 #app {
@@ -306,6 +315,9 @@ body {
   align-items: flex-end;
   justify-content: space-between;
   pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
 
 #touch-move {
@@ -325,6 +337,9 @@ body {
   pointer-events: auto;
   touch-action: none;
   cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .touch-button .icon {
@@ -351,6 +366,19 @@ body {
   pointer-events: auto;
   touch-action: none;
   cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* The label must never take focus or be selectable, so a long press cannot grab it. */
+#charge-button-label,
+#charge-button .icon,
+.touch-button .icon {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  pointer-events: none;
 }
 
 #charge-button .icon {

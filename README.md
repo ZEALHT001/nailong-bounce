@@ -25,6 +25,10 @@ npm run dev
 Open the `Network` URL on the other device. The layout is responsive with touch controls, so a
 phone works as-is.
 
+On a phone the game is best played in portrait: the camera reframes for narrow viewports so the
+next platform is visible ahead of you. Holding a control never selects text or opens the system
+copy menu.
+
 Checklist if another device cannot connect:
 
 - Both devices must be on the same network/subnet; guest Wi-Fi or client isolation will block it.

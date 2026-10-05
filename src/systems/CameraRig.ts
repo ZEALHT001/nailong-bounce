@@ -17,10 +17,21 @@ export type CameraTarget = {
  *   make the whole level bob.
  */
 export class CameraRig {
+  /**
+   * Horizontal world span the framing tries to keep on screen, in world units. Authored levels
+   * put the next platform about 5-10 units ahead of the take-off lip, so this covers the gap plus
+   * the landing platform. Wide viewports already exceed it and are left untouched.
+   */
+  private static readonly TARGET_VISIBLE_WIDTH = 12.5;
+  /** Hard cap on how far the camera may pull back before the frog gets too small to read. */
+  private static readonly MAX_ZOOM_OUT = 3.2;
+
   private readonly desired = new THREE.Vector3();
   private readonly lookAt = new THREE.Vector3();
   private lead = 0;
   private verticalOffset = 0;
+  private zoom = 1;
+  private forwardBias = 0;
 
   constructor(
     private readonly camera: THREE.PerspectiveCamera,
@@ -29,6 +40,29 @@ export class CameraRig {
   ) {
     this.camera.fov = 46;
     this.camera.updateProjectionMatrix();
+  }
+
+  /**
+   * Reframes for the current viewport aspect ratio.
+   *
+   * A PerspectiveCamera's field of view is vertical, so the horizontal span visible at a given
+   * distance scales with the aspect ratio. A portrait phone therefore sees a fraction of what a
+   * laptop does at the same camera distance, and the next platform is simply off screen. Narrow
+   * viewports pull the camera back and lead further ahead so the upcoming gap is visible before
+   * the player has to commit to it.
+   */
+  setAspect(aspect: number): void {
+    const safeAspect = Math.max(0.15, aspect);
+    const visibleAtBaseDistance =
+      2 * this.distance * Math.tan(THREE.MathUtils.degToRad(this.camera.fov) / 2) * safeAspect;
+    const needed = CameraRig.TARGET_VISIBLE_WIDTH / Math.max(0.01, visibleAtBaseDistance);
+    this.zoom = THREE.MathUtils.clamp(needed, 1, CameraRig.MAX_ZOOM_OUT);
+
+    // Extra goal-ward look-ahead bias. Progress is always to the right, so a narrow viewport keeps
+    // more room in front of the frog than behind it, and the framing stays stable instead of
+    // flipping whenever the player nudges backwards.
+    const narrowness = THREE.MathUtils.clamp((1.3 - safeAspect) / 0.9, 0, 1);
+    this.forwardBias = narrowness * 3.4;
   }
 
   snapTo(target: CameraTarget): void {
@@ -56,8 +90,17 @@ export class CameraRig {
   }
 
   private updateDesired(target: CameraTarget, extraY: number): void {
-    this.desired.set(target.x + this.lead, target.y + this.height + this.verticalOffset + extraY, this.distance);
-    this.lookAt.set(target.x + this.lead * 0.75, target.y + 0.7 + this.verticalOffset * 0.4 + extraY, 0);
+    const lead = this.lead + this.forwardBias;
+    this.desired.set(
+      target.x + lead,
+      target.y + this.height + this.verticalOffset + extraY,
+      this.distance * this.zoom,
+    );
+    this.lookAt.set(
+      target.x + lead * 0.75,
+      target.y + 0.7 + this.verticalOffset * 0.4 + extraY,
+      0,
+    );
   }
 
   private applyLookAt(): void {

@@ -128,6 +128,24 @@ axis-separated AABB resolution, one-way platforms resolved on the descending axi
 | Press again while a buffered jump is pending | The active hold wins; the stale buffer is dropped |
 | Bounce pad fires | Buffer cleared: the pad owns the next moment |
 
+## Mobile framing
+
+The camera reframes for the viewport aspect because a `PerspectiveCamera`'s field of view is
+vertical: the horizontal span on screen scales with the aspect ratio, so a portrait phone saw
+about a third of what a laptop saw and the next platform was off screen. Narrow viewports pull
+back to a 12.5-unit horizontal span and bias the framing goal-ward. Wide viewports clamp to the
+original framing, so desktop is unchanged.
+
+`__THREE_GAME_DIAGNOSTICS__.view` exposes the measured span, which is what the mobile regression
+test asserts against.
+
+## Touch controls
+
+Long-pressing a control must not start a selection or raise the iOS copy callout, so the controls
+opt out of selection (`user-select`, `-webkit-user-select`, `-webkit-touch-callout`), their labels
+and icons do not capture pointer events, and `contextmenu`/`selectstart` are suppressed on the
+controls themselves.
+
 ## Test coverage by level
 
 Every level has a scripted completion run using real input (`tests/level-completion.spec.ts`).

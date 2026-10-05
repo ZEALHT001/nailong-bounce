@@ -38,6 +38,8 @@ interface ThreeGameDiagnostics {
   };
   /** Live platform geometry, in authored order. Moving platforms report their current position. */
   platforms: Array<{ index: number; minX: number; maxX: number; minY: number; maxY: number }>;
+  /** Horizontal slice of the play plane currently on screen, in world units. */
+  view: { width: number; left: number; right: number };
   renderer: {
     calls: number;
     triangles: number;

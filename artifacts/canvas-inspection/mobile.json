@@ -26,20 +26,20 @@
       "height": 1328
     },
     "alphaPixels": 4111,
-    "variance": 251,
-    "colorBuckets": 190,
+    "variance": 237,
+    "colorBuckets": 162,
     "metrics": {
-      "colorBuckets": 280,
-      "colorEntropyBits": 5.03,
-      "edgeDensity": 0.195,
+      "colorBuckets": 231,
+      "colorEntropyBits": 4.6,
+      "edgeDensity": 0.149,
       "luminance": {
-        "mean": 166.8,
-        "p5": 88.3,
-        "p95": 212.7,
-        "contrast": 124.4
+        "mean": 170.4,
+        "p5": 94.3,
+        "p95": 220,
+        "contrast": 125.7
       },
-      "dominantColorShare": 0.179,
-      "nonBackgroundShare": 0.821
+      "dominantColorShare": 0.285,
+      "nonBackgroundShare": 0.715
     },
     "renderBudget": {
       "tier": "mobile",
@@ -47,19 +47,19 @@
       "rows": [
         {
           "metric": "calls",
-          "actual": 47,
+          "actual": 57,
           "limit": 150,
           "ok": true
         },
         {
           "metric": "triangles",
-          "actual": 22232,
+          "actual": 24096,
           "limit": 300000,
           "ok": true
         },
         {
           "metric": "geometries",
-          "actual": 21,
+          "actual": 26,
           "limit": 200,
           "ok": true
         },
@@ -74,14 +74,14 @@
     },
     "diagnostics": {
       "frame": 53,
-      "elapsed": 1.0679,
+      "elapsed": 0.9886,
       "mode": "playing",
       "level": 1,
       "levelName": "甜筒草地",
       "score": 0,
       "treats": 0,
       "treatTotal": 5,
-      "runTime": 0.8788300000059608,
+      "runTime": 0.8765320000119212,
       "charging": false,
       "charge": 0,
       "grounded": true,
@@ -111,10 +111,56 @@
         "hurts": 0,
         "wins": 0
       },
+      "audio": {
+        "unlocked": false,
+        "muted": false
+      },
+      "platforms": [
+        {
+          "index": 0,
+          "minX": -4.5,
+          "maxX": 6.5,
+          "minY": -1.3,
+          "maxY": 0
+        },
+        {
+          "index": 1,
+          "minX": 8.799999999999999,
+          "maxX": 12.4,
+          "minY": -0.6000000000000001,
+          "maxY": 0.7
+        },
+        {
+          "index": 2,
+          "minX": 15.599999999999998,
+          "maxX": 19.2,
+          "minY": 0.1499999999999999,
+          "maxY": 1.5
+        },
+        {
+          "index": 3,
+          "minX": 22.9,
+          "maxX": 27.1,
+          "minY": 0.8999999999999999,
+          "maxY": 2.3
+        },
+        {
+          "index": 4,
+          "minX": 32.7,
+          "maxX": 38.3,
+          "minY": 0.8999999999999999,
+          "maxY": 2.3
+        }
+      ],
+      "view": {
+        "width": 12.502220270695288,
+        "left": -5.744317735650196,
+        "right": 6.757902535045091
+      },
       "renderer": {
-        "calls": 47,
-        "triangles": 22232,
-        "geometries": 21,
+        "calls": 57,
+        "triangles": 24096,
+        "geometries": 26,
         "textures": 5
       },
       "canvas": {

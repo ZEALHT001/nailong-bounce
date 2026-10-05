@@ -42,6 +42,40 @@ simulation: the arc must be frame-identical and the contact response hand-tuned,
 
 Reported: "level 2's first floating step — I jump on it and get bounced off, it feels stuck."
 
+Reported on mobile: "holding the charge button selects the text and pops the system copy menu, and
+the view is so zoomed in I cannot see the obstacles ahead."
+
+Both were real, and they have different causes.
+
+1. **Text selection on a held touch control.** Nothing told the browser the controls were not
+   selectable, so a long press started a selection and raised the iOS callout, interrupting the
+   jump. The controls, their labels and their icons now set `user-select: none`,
+   `-webkit-user-select: none` and `-webkit-touch-callout: none`, the label no longer captures
+   pointer events, and the input layer also suppresses `contextmenu` and `selectstart` on every
+   control.
+2. **A portrait viewport saw a fraction of the level.** A `PerspectiveCamera` has a *vertical*
+   field of view, so the horizontal span visible at a given distance scales with the viewport
+   aspect ratio. At aspect 0.46 the phone saw about **4.9 world units** wide, while the next
+   platform sits 5-10 units ahead: the player was jumping blind. The camera now reframes for the
+   viewport aspect — narrow screens pull back until at least 12.5 units are visible and bias the
+   framing goal-ward so more of the path ahead is on screen than behind. Measured after the
+   change: **12.5 units wide, 8.3 ahead and 4.2 behind.**
+
+   Desktop is deliberately untouched: at aspect 1.78 the framing already exceeds the target, the
+   zoom clamps to 1 and the bias to 0, and the measured desktop view is 14.93 units, symmetric.
+
+### Measured view framing
+
+`__THREE_GAME_DIAGNOSTICS__.view` reports the horizontal slice of the play plane (z = 0) that is
+currently on screen, computed by intersecting the camera frustum edges with the gameplay plane.
+
+| Viewport | Aspect | Visible width | Ahead of frog | Behind frog |
+| --- | --- | --- | --- | --- |
+| Desktop 1280x720 | 1.78 | 14.93 | 7.48 | 7.45 |
+| Phone 390x844 | 0.46 | 12.50 | 8.26 | 4.24 |
+
+Before the change the phone view was 4.9 units wide in total.
+
 That was real, and it had a second cause hiding behind it.
 
 1. **Riders moved 2-8x the platform.** Moving platforms computed one delta per rendered frame, but
@@ -114,6 +148,9 @@ gap that cannot be cleared by the shortest hop — verified by
 | `a platform seen as a step is not blocked while walking` | The frog is never blocked short of a lip |
 | `a horizontally moving platform pushes the frog out instead of trapping it` | Movers never embed the frog |
 | `random input never wedges the frog inside geometry` | 700 fuzzed frames x 4 levels: no embed, no NaN, no freeze |
+| `touch controls cannot be selected or focused by a long press` | Selection and iOS callout are suppressed |
+| `a long press on the charge button charges without selecting anything` | 800 ms press charges, selects nothing |
+| `the portrait camera shows enough of the level ahead` | >=11 units visible, more ahead than behind |
 | `charge-and-move covers ground without errors` | Launches and landings register under scripted play |
 | `hazards fail the run and retry returns to the spawn` | Fail state and retry flow |
 | `pause stops simulation and resume restores it` | Pause does not advance game state |

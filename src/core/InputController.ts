@@ -151,6 +151,7 @@ export class InputController {
       down: (event: PointerEvent) => void;
       up: (event: PointerEvent) => void;
       leave: (event: PointerEvent) => void;
+      menu: (event: Event) => void;
     }
   >();
 
@@ -170,13 +171,18 @@ export class InputController {
       set(false);
     };
     const leave = () => set(false);
+    // Long-pressing a control (especially on iOS) can raise the context menu or a selection
+    // callout; neither should interrupt a held jump.
+    const menu = (event: Event) => event.preventDefault();
 
     element.addEventListener('pointerdown', down);
     element.addEventListener('pointerup', up);
     element.addEventListener('pointercancel', up);
     element.addEventListener('lostpointercapture', up);
     element.addEventListener('pointerleave', leave);
-    this.holdHandlers.set(element, { down, up, leave });
+    element.addEventListener('contextmenu', menu);
+    element.addEventListener('selectstart', menu);
+    this.holdHandlers.set(element, { down, up, leave, menu });
   }
 
   private unbindHold(element: HTMLElement): void {
@@ -187,6 +193,8 @@ export class InputController {
     element.removeEventListener('pointercancel', handlers.up);
     element.removeEventListener('lostpointercapture', handlers.up);
     element.removeEventListener('pointerleave', handlers.leave);
+    element.removeEventListener('contextmenu', handlers.menu);
+    element.removeEventListener('selectstart', handlers.menu);
     this.holdHandlers.delete(element);
   }
 }

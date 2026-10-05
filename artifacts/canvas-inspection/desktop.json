@@ -27,9 +27,9 @@
     },
     "alphaPixels": 4096,
     "variance": 252,
-    "colorBuckets": 145,
+    "colorBuckets": 147,
     "metrics": {
-      "colorBuckets": 201,
+      "colorBuckets": 204,
       "colorEntropyBits": 4.21,
       "edgeDensity": 0.127,
       "luminance": {
@@ -73,15 +73,15 @@
       "withinBudget": true
     },
     "diagnostics": {
-      "frame": 53,
-      "elapsed": 0.9652000000000001,
+      "frame": 51,
+      "elapsed": 0.9572999999999999,
       "mode": "playing",
       "level": 1,
       "levelName": "甜筒草地",
       "score": 0,
       "treats": 0,
       "treatTotal": 5,
-      "runTime": 0.8946979999940399,
+      "runTime": 0.8601979999940398,
       "charging": false,
       "charge": 0,
       "grounded": true,
@@ -152,6 +152,11 @@
           "maxY": 2.3
         }
       ],
+      "view": {
+        "width": 14.925752275966499,
+        "left": -8.950675313362606,
+        "right": 5.975076962603892
+      },
       "renderer": {
         "calls": 57,
         "triangles": 24096,

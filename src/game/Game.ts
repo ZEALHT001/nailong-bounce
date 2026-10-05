@@ -220,6 +220,9 @@ export class Game {
     this.vfx.update(animDelta);
 
     const airborne = !this.player.body.grounded && this.mode === 'playing';
+    // Reframe for the current viewport: a portrait phone sees far less horizontally than a
+    // laptop, so the camera pulls back and leads further ahead on narrow screens.
+    this.cameraRig.setAspect(this.camera.aspect);
     this.cameraRig.update(delta, this.player.body, airborne);
     this.applyShake(delta);
     this.updateSun();
@@ -800,6 +803,7 @@ export class Game {
       counters: { ...this.counters },
       audio: { unlocked: this.audio.isUnlocked(), muted: this.muted },
       platforms: this.world.platformRects(),
+      view: this.measureView(),
       renderer: {
         calls: info.render.calls,
         triangles: info.render.triangles,
@@ -820,6 +824,34 @@ export class Game {
     const element = document.querySelector<T>(selector);
     if (!element) throw new Error(`Missing element: ${selector}`);
     return element;
+  }
+
+  /**
+   * Horizontal slice of the play plane (z = 0) currently on screen, in world units.
+   *
+   * This is the number that matters for readability in a side-on platformer: how far ahead the
+   * player can see. It shrinks with the viewport aspect ratio, which is why narrow screens were
+   * showing so little of the level.
+   */
+  private measureView(): { width: number; left: number; right: number } {
+    const left = this.playPlaneXAtNdc(-1);
+    const right = this.playPlaneXAtNdc(1);
+    return {
+      width: Math.abs(right - left),
+      left: Math.min(left, right),
+      right: Math.max(left, right),
+    };
+  }
+
+  /** World x where the ray through the given NDC x crosses the gameplay plane at z = 0. */
+  private playPlaneXAtNdc(ndcX: number): number {
+    const tanHalfFov = Math.tan(THREE.MathUtils.degToRad(this.camera.fov) / 2);
+    const direction = new THREE.Vector3(ndcX * tanHalfFov * this.camera.aspect, 0, -1);
+    direction.applyQuaternion(this.camera.quaternion);
+    const origin = this.camera.position;
+    if (Math.abs(direction.z) < 1e-6) return origin.x;
+    const t = -origin.z / direction.z;
+    return origin.x + direction.x * t;
   }
 }
 
