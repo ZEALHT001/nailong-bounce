@@ -4,12 +4,32 @@ A four-level 2.5D bounce platformer starring 奶蛙. Hold to squash and charge, 
 chain bounce pads, collect fish treats, and reach the flag. Everything is procedural Three.js —
 no external models, textures, or audio files.
 
+**在线试玩: https://zealht001.github.io/nailong-bounce/**
+
+手机浏览器直接打开即可,竖屏体验最佳(相机已按窄屏重新构图,并且长按蓄力键不会触发系统选择菜单)。
+
 ## Run it
 
 ```bash
 npm install
 npm run dev          # http://127.0.0.1:5188
 ```
+
+## Deploy
+
+The live site is served by GitHub Pages from the `gh-pages` branch. To publish an update:
+
+```bash
+bash scripts/deploy-pages.sh
+```
+
+The script builds with the `/nailong-bounce/` base path, commits the output to `gh-pages` from a
+throwaway checkout (the working tree and `main` are never touched) and pushes it. `main` stays
+source-only; published files are generated.
+
+> `base` must match the repository name, because a Pages *project* site is served from
+> `/<repo>/`. If you fork this to a different repository name, pass the path explicitly:
+> `bash scripts/deploy-pages.sh <owner>/<repo> /<repo>/`
 
 ## Play it from another device on the same network
 
@@ -58,6 +78,7 @@ npm run verify:visual     # visual regression
 
 node scripts/measure-jumps.mjs          # print the charge -> jump-distance envelope
 node scripts/shoot-hero.mjs             # render the hero model from four angles
+bash scripts/deploy-pages.sh            # publish the build to GitHub Pages
 ```
 
 Every level has a scripted completion bot in `tests/level-completion.spec.ts`. It measures the
