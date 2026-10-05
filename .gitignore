@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+*.tsbuildinfo
+
+# Test run output
+test-results/
+playwright-report/
+blob-report/
+
+# Local environment and editor noise
+.env
+.env.*
+*.log
+.DS_Store
+.idea/
+.vscode/

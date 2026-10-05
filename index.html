@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#8fd0e8" />
+    <link rel="icon" href="data:," />
+    <title>奶蛙弹跳</title>
+  </head>
+  <body>
+    <main id="app">
+      <canvas id="game-canvas" aria-label="奶蛙弹跳 游戏画面"></canvas>
+
+      <section id="hud" aria-live="polite">
+        <div class="cluster cluster-left">
+          <div id="level-chip">
+            <span id="level-index">1</span>
+            <span id="level-name">甜筒草地</span>
+          </div>
+          <div id="treat-cluster">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 12c0-4 3.6-7 8-7s8 3 8 7-3.6 5-8 5-8-1-8-5Z" fill="currentColor" opacity="0.9" />
+              <path d="M4 12 2 8.5 6.4 9.4Z" fill="currentColor" />
+              <circle cx="15.2" cy="10.4" r="1.15" fill="#26200f" />
+            </svg>
+            <strong id="treat-value">0/5</strong>
+          </div>
+          <div id="timer-cluster">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="13" r="8" fill="none" stroke="currentColor" stroke-width="2.2" />
+              <path d="M12 8.4V13l3.2 2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+            </svg>
+            <strong id="timer-value">00:00</strong>
+          </div>
+        </div>
+
+        <div class="cluster cluster-right">
+          <div id="score-cluster">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m12 3.6 2.6 5.5 5.9.8-4.3 4.2 1.1 5.9L12 17.2 6.7 20l1.1-5.9L3.5 9.9l5.9-.8Z" fill="currentColor" />
+            </svg>
+            <strong id="score-value">0</strong>
+          </div>
+          <button id="mute-button" class="icon-button" type="button" aria-label="声音开关">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 9.5h3.2L12 5.5v13L7.2 14.5H4Z" fill="currentColor" />
+              <path id="mute-wave" d="M15.4 9.2a4 4 0 0 1 0 5.6M17.8 6.8a7.4 7.4 0 0 1 0 10.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <path id="mute-slash" d="M15 9.5l5 5M20 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </button>
+          <button id="pause-button" class="icon-button" type="button" aria-label="暂停">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="7" y="5.5" width="3.4" height="13" rx="1.2" fill="currentColor" />
+              <rect x="13.6" y="5.5" width="3.4" height="13" rx="1.2" fill="currentColor" />
+            </svg>
+          </button>
+        </div>
+
+        <div id="charge-cluster" aria-hidden="true">
+          <div id="charge-track"><div id="charge-fill"></div></div>
+        </div>
+
+        <div id="goal-indicator" aria-hidden="true">
+          <svg class="icon" viewBox="0 0 24 24">
+            <path d="M4 12h12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
+            <path d="m12.5 6.6 6 5.4-6 5.4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span>终点</span>
+        </div>
+
+        <div id="banner" role="status"></div>
+      </section>
+
+      <div id="touch-controls" aria-hidden="true">
+        <div id="touch-move">
+          <button id="move-left" class="touch-button" type="button" aria-label="向左">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M15 5.5 8 12l7 6.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <button id="move-right" class="touch-button" type="button" aria-label="向右">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m9 5.5 7 6.5-7 6.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+        <button id="charge-button" type="button" aria-label="蓄力跳跃">
+          <span id="charge-button-label">蓄力</span>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 19.5V6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+            <path d="m6.6 11.2 5.4-5.4 5.4 5.4" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+
+      <div id="overlay" class="overlay" hidden>
+        <div class="overlay-panel">
+          <p id="overlay-kicker">关卡完成</p>
+          <h1 id="overlay-title">甜筒草地</h1>
+          <p id="overlay-subtitle"></p>
+          <dl id="overlay-stats"></dl>
+          <div class="overlay-actions">
+            <button id="overlay-primary" type="button">下一步</button>
+            <button id="overlay-secondary" type="button" hidden>重玩</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

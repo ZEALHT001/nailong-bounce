@@ -1,0 +1,181 @@
+{
+  "url": "http://127.0.0.1:5188",
+  "mode": "desktop",
+  "state": "level-2",
+  "requestedState": "level-2",
+  "appliedState": "level-2",
+  "runId": null,
+  "seed": 12345,
+  "screenshotPath": "artifacts/canvas-inspection/desktop-level-2.png",
+  "gpu": {
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+    "vendor": "Google Inc. (Apple)",
+    "softwareRendered": false
+  },
+  "result": {
+    "ok": true,
+    "reason": "nonblank",
+    "rect": {
+      "x": 0,
+      "y": 0,
+      "width": 1280,
+      "height": 720
+    },
+    "drawingBuffer": {
+      "width": 1280,
+      "height": 720
+    },
+    "alphaPixels": 4096,
+    "variance": 253,
+    "colorBuckets": 165,
+    "metrics": {
+      "colorBuckets": 219,
+      "colorEntropyBits": 4.67,
+      "edgeDensity": 0.133,
+      "luminance": {
+        "mean": 177.8,
+        "p5": 121,
+        "p95": 220,
+        "contrast": 99
+      },
+      "dominantColorShare": 0.18,
+      "nonBackgroundShare": 0.82
+    },
+    "renderBudget": {
+      "tier": "desktop",
+      "note": "starting-point budget; adjust per game and document overrides",
+      "rows": [
+        {
+          "metric": "calls",
+          "actual": 53,
+          "limit": 300,
+          "ok": true
+        },
+        {
+          "metric": "triangles",
+          "actual": 22660,
+          "limit": 750000,
+          "ok": true
+        },
+        {
+          "metric": "geometries",
+          "actual": 26,
+          "limit": 300,
+          "ok": true
+        },
+        {
+          "metric": "textures",
+          "actual": 5,
+          "limit": 60,
+          "ok": true
+        }
+      ],
+      "withinBudget": true
+    },
+    "diagnostics": {
+      "frame": 12,
+      "elapsed": 0.31930000000000003,
+      "mode": "playing",
+      "level": 2,
+      "levelName": "果冻栈道",
+      "score": 0,
+      "treats": 0,
+      "treatTotal": 5,
+      "runTime": 0,
+      "charging": false,
+      "charge": 0,
+      "grounded": false,
+      "player": {
+        "position": {
+          "x": -1.5,
+          "y": 0.4,
+          "z": 0
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "speed": 0
+      },
+      "lastEvents": {
+        "landed": 0,
+        "padBounce": 0,
+        "hitWall": 0,
+        "hitCeiling": false,
+        "launched": 0
+      },
+      "counters": {
+        "launches": 0,
+        "landings": 0,
+        "padBounces": 0,
+        "hurts": 0,
+        "wins": 0
+      },
+      "audio": {
+        "unlocked": false,
+        "muted": false
+      },
+      "platforms": [
+        {
+          "index": 0,
+          "minX": -5,
+          "maxX": 5,
+          "minY": -1.3,
+          "maxY": 0
+        },
+        {
+          "index": 1,
+          "minX": 8.100000000000001,
+          "maxX": 11.5,
+          "minY": -0.7000000000000001,
+          "maxY": 0.6
+        },
+        {
+          "index": 2,
+          "minX": 15.600000000000001,
+          "maxX": 19.6,
+          "minY": 0.04999999999999982,
+          "maxY": 1.4
+        },
+        {
+          "index": 3,
+          "minX": 23.7,
+          "maxX": 28.3,
+          "minY": 0.8000000000000003,
+          "maxY": 2.2
+        },
+        {
+          "index": 4,
+          "minX": 32.6,
+          "maxX": 36.199999999999996,
+          "minY": 0.8000000000000003,
+          "maxY": 2.2
+        },
+        {
+          "index": 5,
+          "minX": 39.35,
+          "maxX": 45.85,
+          "minY": 1.45,
+          "maxY": 2.9
+        }
+      ],
+      "renderer": {
+        "calls": 53,
+        "triangles": 22660,
+        "geometries": 26,
+        "textures": 5
+      },
+      "canvas": {
+        "clientWidth": 1280,
+        "clientHeight": 720,
+        "width": 1280,
+        "height": 720,
+        "dpr": 1
+      }
+    }
+  },
+  "consoleErrors": [],
+  "pageErrors": [],
+  "consoleErrorCount": 0,
+  "pageErrorCount": 0
+}

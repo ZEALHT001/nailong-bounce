@@ -1,0 +1,188 @@
+{
+  "url": "http://127.0.0.1:5188",
+  "mode": "desktop",
+  "state": "level-3",
+  "requestedState": "level-3",
+  "appliedState": "level-3",
+  "runId": null,
+  "seed": 12345,
+  "screenshotPath": "artifacts/canvas-inspection/desktop-level-3.png",
+  "gpu": {
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+    "vendor": "Google Inc. (Apple)",
+    "softwareRendered": false
+  },
+  "result": {
+    "ok": true,
+    "reason": "nonblank",
+    "rect": {
+      "x": 0,
+      "y": 0,
+      "width": 1280,
+      "height": 720
+    },
+    "drawingBuffer": {
+      "width": 1280,
+      "height": 720
+    },
+    "alphaPixels": 4096,
+    "variance": 253,
+    "colorBuckets": 156,
+    "metrics": {
+      "colorBuckets": 232,
+      "colorEntropyBits": 4.52,
+      "edgeDensity": 0.147,
+      "luminance": {
+        "mean": 166.1,
+        "p5": 98.7,
+        "p95": 211.3,
+        "contrast": 112.6
+      },
+      "dominantColorShare": 0.213,
+      "nonBackgroundShare": 0.787
+    },
+    "renderBudget": {
+      "tier": "desktop",
+      "note": "starting-point budget; adjust per game and document overrides",
+      "rows": [
+        {
+          "metric": "calls",
+          "actual": 55,
+          "limit": 300,
+          "ok": true
+        },
+        {
+          "metric": "triangles",
+          "actual": 22552,
+          "limit": 750000,
+          "ok": true
+        },
+        {
+          "metric": "geometries",
+          "actual": 29,
+          "limit": 300,
+          "ok": true
+        },
+        {
+          "metric": "textures",
+          "actual": 5,
+          "limit": 60,
+          "ok": true
+        }
+      ],
+      "withinBudget": true
+    },
+    "diagnostics": {
+      "frame": 9,
+      "elapsed": 0.3971,
+      "mode": "playing",
+      "level": 3,
+      "levelName": "弹跳峡谷",
+      "score": 0,
+      "treats": 0,
+      "treatTotal": 6,
+      "runTime": 0,
+      "charging": false,
+      "charge": 0,
+      "grounded": false,
+      "player": {
+        "position": {
+          "x": -1.5,
+          "y": 0.4,
+          "z": 0
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "speed": 0
+      },
+      "lastEvents": {
+        "landed": 0,
+        "padBounce": 0,
+        "hitWall": 0,
+        "hitCeiling": false,
+        "launched": 0
+      },
+      "counters": {
+        "launches": 0,
+        "landings": 0,
+        "padBounces": 0,
+        "hurts": 0,
+        "wins": 0
+      },
+      "audio": {
+        "unlocked": false,
+        "muted": false
+      },
+      "platforms": [
+        {
+          "index": 0,
+          "minX": -5,
+          "maxX": 5,
+          "minY": -1.3,
+          "maxY": 0
+        },
+        {
+          "index": 1,
+          "minX": 8.1,
+          "maxX": 11.1,
+          "minY": -0.55,
+          "maxY": 0.8
+        },
+        {
+          "index": 2,
+          "minX": 15.6,
+          "maxX": 18.4,
+          "minY": 0.40000000000000013,
+          "maxY": 1.8
+        },
+        {
+          "index": 3,
+          "minX": 23.1,
+          "maxX": 26.1,
+          "minY": 0.40000000000000013,
+          "maxY": 1.8
+        },
+        {
+          "index": 4,
+          "minX": 30.8,
+          "maxX": 34.4,
+          "minY": 0.95,
+          "maxY": 2.4
+        },
+        {
+          "index": 5,
+          "minX": 39.099999999999994,
+          "maxX": 42.5,
+          "minY": 1.2999999999999998,
+          "maxY": 2.8
+        },
+        {
+          "index": 6,
+          "minX": 45.75,
+          "maxX": 52.25,
+          "minY": 1.7000000000000002,
+          "maxY": 3.2
+        }
+      ],
+      "renderer": {
+        "calls": 55,
+        "triangles": 22552,
+        "geometries": 29,
+        "textures": 5
+      },
+      "canvas": {
+        "clientWidth": 1280,
+        "clientHeight": 720,
+        "width": 1280,
+        "height": 720,
+        "dpr": 1
+      }
+    }
+  },
+  "consoleErrors": [],
+  "pageErrors": [],
+  "consoleErrorCount": 0,
+  "pageErrorCount": 0
+}

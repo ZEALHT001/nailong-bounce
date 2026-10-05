@@ -1,0 +1,174 @@
+{
+  "url": "http://127.0.0.1:5188",
+  "mode": "desktop",
+  "state": null,
+  "requestedState": null,
+  "appliedState": null,
+  "runId": null,
+  "seed": 12345,
+  "screenshotPath": "artifacts/canvas-inspection/desktop.png",
+  "gpu": {
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+    "vendor": "Google Inc. (Apple)",
+    "softwareRendered": false
+  },
+  "result": {
+    "ok": true,
+    "reason": "nonblank",
+    "rect": {
+      "x": 0,
+      "y": 0,
+      "width": 1280,
+      "height": 720
+    },
+    "drawingBuffer": {
+      "width": 1280,
+      "height": 720
+    },
+    "alphaPixels": 4096,
+    "variance": 252,
+    "colorBuckets": 145,
+    "metrics": {
+      "colorBuckets": 201,
+      "colorEntropyBits": 4.21,
+      "edgeDensity": 0.127,
+      "luminance": {
+        "mean": 174.8,
+        "p5": 139,
+        "p95": 212.9,
+        "contrast": 73.9
+      },
+      "dominantColorShare": 0.279,
+      "nonBackgroundShare": 0.721
+    },
+    "renderBudget": {
+      "tier": "desktop",
+      "note": "starting-point budget; adjust per game and document overrides",
+      "rows": [
+        {
+          "metric": "calls",
+          "actual": 57,
+          "limit": 300,
+          "ok": true
+        },
+        {
+          "metric": "triangles",
+          "actual": 24096,
+          "limit": 750000,
+          "ok": true
+        },
+        {
+          "metric": "geometries",
+          "actual": 26,
+          "limit": 300,
+          "ok": true
+        },
+        {
+          "metric": "textures",
+          "actual": 5,
+          "limit": 60,
+          "ok": true
+        }
+      ],
+      "withinBudget": true
+    },
+    "diagnostics": {
+      "frame": 53,
+      "elapsed": 0.9652000000000001,
+      "mode": "playing",
+      "level": 1,
+      "levelName": "甜筒草地",
+      "score": 0,
+      "treats": 0,
+      "treatTotal": 5,
+      "runTime": 0.8946979999940399,
+      "charging": false,
+      "charge": 0,
+      "grounded": true,
+      "player": {
+        "position": {
+          "x": -1.5,
+          "y": 0,
+          "z": 0
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "speed": 0
+      },
+      "lastEvents": {
+        "landed": 0,
+        "padBounce": 0,
+        "hitWall": 0,
+        "hitCeiling": false,
+        "launched": 0
+      },
+      "counters": {
+        "launches": 0,
+        "landings": 1,
+        "padBounces": 0,
+        "hurts": 0,
+        "wins": 0
+      },
+      "audio": {
+        "unlocked": false,
+        "muted": false
+      },
+      "platforms": [
+        {
+          "index": 0,
+          "minX": -4.5,
+          "maxX": 6.5,
+          "minY": -1.3,
+          "maxY": 0
+        },
+        {
+          "index": 1,
+          "minX": 8.799999999999999,
+          "maxX": 12.4,
+          "minY": -0.6000000000000001,
+          "maxY": 0.7
+        },
+        {
+          "index": 2,
+          "minX": 15.599999999999998,
+          "maxX": 19.2,
+          "minY": 0.1499999999999999,
+          "maxY": 1.5
+        },
+        {
+          "index": 3,
+          "minX": 22.9,
+          "maxX": 27.1,
+          "minY": 0.8999999999999999,
+          "maxY": 2.3
+        },
+        {
+          "index": 4,
+          "minX": 32.7,
+          "maxX": 38.3,
+          "minY": 0.8999999999999999,
+          "maxY": 2.3
+        }
+      ],
+      "renderer": {
+        "calls": 57,
+        "triangles": 24096,
+        "geometries": 26,
+        "textures": 5
+      },
+      "canvas": {
+        "clientWidth": 1280,
+        "clientHeight": 720,
+        "width": 1280,
+        "height": 720,
+        "dpr": 1
+      }
+    }
+  },
+  "consoleErrors": [],
+  "pageErrors": [],
+  "consoleErrorCount": 0,
+  "pageErrorCount": 0
+}
