@@ -11,6 +11,29 @@ npm install
 npm run dev          # http://127.0.0.1:5188
 ```
 
+## Play it from another device on the same network
+
+The dev server listens on every interface, so any phone, tablet or laptop on the same LAN can
+open it. Start the server and read the `Network:` line Vite prints:
+
+```bash
+npm run dev
+#   ➜  Local:   http://localhost:5188/
+#   ➜  Network: http://<your-lan-ip>:5188/
+```
+
+Open the `Network` URL on the other device. The layout is responsive with touch controls, so a
+phone works as-is.
+
+Checklist if another device cannot connect:
+
+- Both devices must be on the same network/subnet; guest Wi-Fi or client isolation will block it.
+- Find the host address with `ipconfig getifaddr en0` on macOS.
+- Allow incoming connections for `node` if the macOS firewall prompts (this host currently has the
+  firewall off).
+- To share a frozen copy instead of a live dev server, run `npm run build && npm run preview` and
+  share `http://<your-lan-ip>:4188/`.
+
 ## Controls
 
 | Action | Keyboard | Touch |
